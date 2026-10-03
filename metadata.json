@@ -1,0 +1,6 @@
+{
+  "name": "Dra. Adriana Martins | Fisioterapia & Alta Performance",
+  "description": "Clínica de fisioterapia avançada, RPG, reabilitação desportiva e pilates clínico de alta performance liderada pela Dra. Adriana Martins.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
