@@ -5,9 +5,7 @@ import { MessageCircle, X } from 'lucide-react';
 export const FloatingWhatsApp: React.FC = () => {
   const [showTooltip, setShowTooltip] = useState(true);
 
-  const whatsappUrl = `https://wa.me/${CLINIC_CONTACT.phoneRaw}?text=${encodeURIComponent(
-    'Olá Dra. Adriana! Gostaria de agendar uma avaliação na sua clínica de fisioterapia.'
-  )}`;
+  const whatsappUrl = CLINIC_CONTACT.whatsappUrl;
 
   return (
     <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-2 pointer-events-auto">
@@ -32,8 +30,9 @@ export const FloatingWhatsApp: React.FC = () => {
         target="_blank"
         rel="noopener noreferrer"
         id="floating-whatsapp-btn"
-        className="w-14 h-14 rounded-full bg-gradient-to-tr from-emerald-600 to-teal-500 text-white shadow-xl hover:shadow-2xl flex items-center justify-center transition-all duration-300 transform hover:scale-110 active:scale-95 group focus:outline-none focus:ring-4 focus:ring-teal-400/50"
-        aria-label="Falar com a clínica no WhatsApp"
+        className="w-14 h-14 rounded-full bg-gradient-to-tr from-emerald-600 to-teal-500 text-white shadow-xl hover:shadow-2xl flex items-center justify-center transition-all duration-300 transform hover:scale-110 active:scale-95 group focus:outline-none focus:ring-4 focus:ring-teal-400/50 cursor-pointer"
+        aria-label="Conversar com Adriana no WhatsApp"
+        title="Conversar com Adriana no WhatsApp"
       >
         <MessageCircle className="w-7 h-7 fill-white/10 group-hover:rotate-6 transition-transform" />
       </a>

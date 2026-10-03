@@ -18,9 +18,7 @@ export const ServiceModal: React.FC<ServiceModalProps> = ({
 }) => {
   if (!service) return null;
 
-  const whatsappUrl = `https://wa.me/${CLINIC_CONTACT.phoneRaw}?text=${encodeURIComponent(
-    `Olá Dra. Adriana! Gostaria de agendar uma sessão de ${service.title}.`
-  )}`;
+  const whatsappUrl = CLINIC_CONTACT.whatsappUrl;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/70 backdrop-blur-sm animate-fade-in">
@@ -124,6 +122,8 @@ export const ServiceModal: React.FC<ServiceModalProps> = ({
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Conversar com Adriana no WhatsApp"
+            title="Conversar com Adriana no WhatsApp"
             className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-teal-600 hover:bg-teal-700 text-white text-xs font-extrabold uppercase tracking-wider shadow-md transition"
           >
             <MessageCircle className="w-4 h-4" />

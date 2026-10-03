@@ -40,9 +40,7 @@ export const AudienceSection: React.FC<AudienceSectionProps> = ({ onOpenAssessme
     }
   };
 
-  const whatsappAudienceUrl = `https://wa.me/${CLINIC_CONTACT.phoneRaw}?text=${encodeURIComponent(
-    `Olá Dra. Adriana! Gostaria de agendar uma avaliação com foco em: ${active.title}.`
-  )}`;
+  const whatsappAudienceUrl = CLINIC_CONTACT.whatsappUrl;
 
   return (
     <section id="para-quem" className="py-20 md:py-28 bg-white border-t border-slate-100 relative">
@@ -142,6 +140,8 @@ export const AudienceSection: React.FC<AudienceSectionProps> = ({ onOpenAssessme
                   href={whatsappAudienceUrl}
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label="Conversar com Adriana no WhatsApp"
+                  title="Conversar com Adriana no WhatsApp"
                   className="inline-flex items-center gap-2 px-5 py-3.5 rounded-xl bg-white/10 hover:bg-white/15 text-white border border-white/20 text-xs sm:text-sm font-semibold transition"
                 >
                   <MessageCircle className="w-4 h-4 text-teal-300" />

@@ -29,7 +29,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAssessment }) => {
     { label: 'Contato', href: '#contato' },
   ];
 
-  const whatsappUrl = `https://wa.me/${CLINIC_CONTACT.phoneRaw}?text=${encodeURIComponent(CLINIC_CONTACT.whatsappMessage)}`;
+  const whatsappUrl = CLINIC_CONTACT.whatsappUrl;
 
   return (
     <header
@@ -80,7 +80,8 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAssessment }) => {
                 ? 'text-emerald-900 bg-emerald-50 hover:bg-emerald-100 border-emerald-200'
                 : 'text-emerald-200 bg-white/10 hover:bg-white/15 border-white/20'
             }`}
-            title="Conversar no WhatsApp"
+            title="Conversar com Adriana no WhatsApp"
+            aria-label="Conversar com Adriana no WhatsApp"
           >
             <MessageCircle className="w-3.5 h-3.5" />
             <span className="hidden xl:inline">WhatsApp</span>
@@ -154,6 +155,8 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAssessment }) => {
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="Conversar com Adriana no WhatsApp"
+              title="Conversar com Adriana no WhatsApp"
               className="w-full py-2.5 rounded-xl text-center font-semibold text-sm text-emerald-900 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 transition flex items-center justify-center gap-2"
             >
               <MessageCircle className="w-4 h-4 text-emerald-700" />

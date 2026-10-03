@@ -117,9 +117,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenAssessment }) => {
     }
   };
 
-  const whatsappUrl = `https://wa.me/${CLINIC_CONTACT.phoneRaw}?text=${encodeURIComponent(
-    'Olá Dra. Adriana! Gostaria de agendar uma avaliação inicial na clínica.'
-  )}`;
+  const whatsappUrl = CLINIC_CONTACT.whatsappUrl;
 
   return (
     <section
@@ -266,6 +264,8 @@ export const Hero: React.FC<HeroProps> = ({ onOpenAssessment }) => {
                 target="_blank"
                 rel="noopener noreferrer"
                 id="hero-cta-whatsapp"
+                aria-label="Conversar com Adriana no WhatsApp"
+                title="Conversar com Adriana no WhatsApp"
                 className="inline-flex items-center justify-center gap-2.5 px-6 py-4 rounded-2xl text-sm sm:text-base font-bold text-white bg-white/10 hover:bg-white/15 border border-white/20 backdrop-blur-md transition-colors"
               >
                 <MessageSquare className="w-5 h-5 text-emerald-300" />

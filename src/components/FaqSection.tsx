@@ -10,9 +10,7 @@ export const FaqSection: React.FC = () => {
     setOpenIndex(openIndex === idx ? null : idx);
   };
 
-  const whatsappFaqUrl = `https://wa.me/${CLINIC_CONTACT.phoneRaw}?text=${encodeURIComponent(
-    'Olá Dra. Adriana! Gostaria de tirar uma dúvida sobre a avaliação na clínica.'
-  )}`;
+  const whatsappFaqUrl = CLINIC_CONTACT.whatsappUrl;
 
   return (
     <section className="py-24 md:py-32 bg-white relative">
@@ -94,6 +92,8 @@ export const FaqSection: React.FC = () => {
             href={whatsappFaqUrl}
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Conversar com Adriana no WhatsApp"
+            title="Conversar com Adriana no WhatsApp"
             className="inline-flex items-center gap-2 px-5 py-3 rounded-2xl bg-emerald-900 hover:bg-emerald-800 text-white text-xs font-bold uppercase tracking-wider transition-colors shadow-sm"
           >
             <MessageCircle className="w-4 h-4" />

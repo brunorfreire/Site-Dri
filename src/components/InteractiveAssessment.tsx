@@ -97,7 +97,7 @@ export const InteractiveAssessment: React.FC<InteractiveAssessmentProps> = ({
 Gostaria de agendar minha avaliação clínica individual!`;
 
     const url = `https://wa.me/${CLINIC_CONTACT.phoneRaw}?text=${encodeURIComponent(message)}`;
-    window.open(url, '_blank');
+    window.open(url, '_blank', 'noopener,noreferrer');
     setIsSubmitted(true);
   };
 
@@ -295,7 +295,7 @@ Gostaria de agendar minha avaliação clínica individual!`;
                   id="patient-phone"
                   type="tel"
                   required
-                  placeholder="Ex: (21) 99999-9999"
+                  placeholder="Ex: (21) 97150-2301"
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                   className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-teal-500 text-sm bg-white"

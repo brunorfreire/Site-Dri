@@ -1,15 +1,14 @@
 import { ServiceItem, AudienceItem, CredentialItem, TestimonialItem } from '../types';
 
 export const CLINIC_CONTACT = {
-  phone: "(21) 99876-5432",
-  phoneRaw: "5521998765432",
-  whatsappMessage: "Olá Dra. Adriana! Gostaria de agendar uma avaliação na clínica de fisioterapia.",
-  instagram: "@dra.adrianamartins.fisio",
-  instagramOld: "@pilatesmoradadosol",
-  instagramUrl: "https://instagram.com/pilatesmoradadosol",
+  phone: "(21) 97150-2301",
+  phoneRaw: "5521971502301",
+  whatsappMessage: "Olá, Adriana! Vim pelo seu site e gostaria de saber mais sobre os atendimentos e agendar uma avaliação.",
+  whatsappUrl: "https://wa.me/5521971502301?text=Ol%C3%A1%2C%20Adriana%21%20Vim%20pelo%20seu%20site%20e%20gostaria%20de%20saber%20mais%20sobre%20os%20atendimentos%20e%20agendar%20uma%20avalia%C3%A7%C3%A3o.",
+  instagram: "@pilatesmoradadosol",
+  instagramUrl: "https://www.instagram.com/pilatesmoradadosol/",
   address: "Rua Morada do Sol, 450 - Sala 302 - Jardim Oceânico / Barra da Tijuca, Rio de Janeiro - RJ",
   hours: "Segunda a Sexta: 07:00 às 20:00 | Sábado: 08:00 às 13:00",
-  email: "contato@draadrianamartins.com.br",
   crefito: "CREFITO-2 / 68.421-F"
 };
 

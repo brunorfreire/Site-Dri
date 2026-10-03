@@ -5,21 +5,17 @@ import {
   MapPin,
   Clock,
   Phone,
-  Mail,
   Send,
   CheckCircle2,
   Instagram,
   Navigation,
   ExternalLink,
-  ShieldCheck,
   MessageCircle,
-  ArrowRight
+  ArrowRight,
+  Sparkles
 } from 'lucide-react';
 
 export const LocationFooter: React.FC = () => {
-  const [newsletterEmail, setNewsletterEmail] = useState('');
-  const [newsletterSubscribed, setNewsletterSubscribed] = useState(false);
-
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -28,30 +24,22 @@ export const LocationFooter: React.FC = () => {
   });
   const [submitted, setSubmitted] = useState(false);
 
-  const handleNewsletterSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (newsletterEmail) {
-      setNewsletterSubscribed(true);
-      setNewsletterEmail('');
-    }
-  };
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const text = `Olá Dra. Adriana Martins! Mensagem de contato pelo site:
+    const text = `Olá, Adriana! Vim pelo seu site e gostaria de saber mais sobre os atendimentos e agendar uma avaliação.
+
+Informações de contato:
 - *Nome:* ${formData.name}
-- *Telefone:* ${formData.phone}
-- *Interesse:* ${formData.service}
-- *Mensagem:* ${formData.message || 'Gostaria de informações sobre horários disponíveis.'}`;
+- *Telefone/WhatsApp:* ${formData.phone}
+- *Serviço de Interesse:* ${formData.service}
+- *Mensagem:* ${formData.message || 'Gostaria de verificar horários disponíveis para avaliação.'}`;
 
     const url = `https://wa.me/${CLINIC_CONTACT.phoneRaw}?text=${encodeURIComponent(text)}`;
-    window.open(url, '_blank');
+    window.open(url, '_blank', 'noopener,noreferrer');
     setSubmitted(true);
   };
 
-  const whatsappDirect = `https://wa.me/${CLINIC_CONTACT.phoneRaw}?text=${encodeURIComponent(
-    'Olá! Gostaria de agendar uma avaliação com a Dra. Adriana Martins.'
-  )}`;
+  const whatsappDirect = CLINIC_CONTACT.whatsappUrl;
 
   return (
     <footer id="contato" className="bg-[#042f2e] text-white relative pt-24 pb-12 overflow-hidden border-t border-emerald-900/60">
@@ -63,7 +51,7 @@ export const LocationFooter: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Contact & Map Card */}
-        <div className="bg-emerald-950/70 backdrop-blur-md rounded-3xl sm:rounded-4xl border border-emerald-800/60 p-6 sm:p-10 mb-20 shadow-2xl">
+        <div className="bg-emerald-950/70 backdrop-blur-md rounded-3xl sm:rounded-4xl border border-emerald-800/60 p-6 sm:p-10 mb-16 shadow-2xl">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
             
             {/* Left: Contact Information & Hours */}
@@ -83,6 +71,7 @@ export const LocationFooter: React.FC = () => {
 
               {/* Info Items */}
               <div className="space-y-4 pt-1">
+                {/* Address */}
                 <div className="flex items-start gap-3.5">
                   <div className="w-10 h-10 rounded-2xl bg-emerald-900/90 text-emerald-300 flex items-center justify-center flex-shrink-0 mt-0.5 border border-emerald-700/50">
                     <MapPin className="w-5 h-5" />
@@ -94,6 +83,7 @@ export const LocationFooter: React.FC = () => {
                   </div>
                 </div>
 
+                {/* Hours */}
                 <div className="flex items-start gap-3.5">
                   <div className="w-10 h-10 rounded-2xl bg-emerald-900/90 text-emerald-300 flex items-center justify-center flex-shrink-0 mt-0.5 border border-emerald-700/50">
                     <Clock className="w-5 h-5" />
@@ -105,17 +95,29 @@ export const LocationFooter: React.FC = () => {
                   </div>
                 </div>
 
+                {/* WhatsApp & Phone */}
                 <div className="flex items-start gap-3.5">
                   <div className="w-10 h-10 rounded-2xl bg-emerald-900/90 text-emerald-300 flex items-center justify-center flex-shrink-0 mt-0.5 border border-emerald-700/50">
                     <Phone className="w-5 h-5" />
                   </div>
                   <div>
-                    <div className="text-xs font-bold text-emerald-300 uppercase tracking-wider">Telefone & WhatsApp</div>
-                    <div className="text-sm font-semibold text-white mt-0.5">{CLINIC_CONTACT.phone}</div>
+                    <div className="text-xs font-bold text-emerald-300 uppercase tracking-wider">WhatsApp & Telefone</div>
+                    <a
+                      href={whatsappDirect}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm font-bold text-white hover:text-emerald-300 transition flex items-center gap-1.5 mt-0.5 cursor-pointer"
+                      aria-label="Conversar com Adriana no WhatsApp"
+                      title="Conversar com Adriana no WhatsApp"
+                    >
+                      <span>{CLINIC_CONTACT.phone}</span>
+                      <ExternalLink className="w-3.5 h-3.5 text-emerald-400" />
+                    </a>
                     <div className="text-xs text-emerald-300 mt-0.5 font-medium">Resposta rápida da recepção clínica</div>
                   </div>
                 </div>
 
+                {/* Instagram */}
                 <div className="flex items-start gap-3.5">
                   <div className="w-10 h-10 rounded-2xl bg-emerald-900/90 text-emerald-300 flex items-center justify-center flex-shrink-0 mt-0.5 border border-emerald-700/50">
                     <Instagram className="w-5 h-5" />
@@ -126,11 +128,14 @@ export const LocationFooter: React.FC = () => {
                       href={CLINIC_CONTACT.instagramUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-sm font-semibold text-white hover:text-emerald-300 transition flex items-center gap-1.5"
+                      className="text-sm font-bold text-white hover:text-emerald-300 transition flex items-center gap-1.5 mt-0.5 cursor-pointer"
+                      aria-label="Visitar Instagram @pilatesmoradadosol"
+                      title="Visitar Instagram @pilatesmoradadosol"
                     >
                       <span>{CLINIC_CONTACT.instagram}</span>
                       <ExternalLink className="w-3.5 h-3.5 text-emerald-400" />
                     </a>
+                    <div className="text-xs text-emerald-200/70 mt-0.5">Acompanhe rotina, posturas e novidades</div>
                   </div>
                 </div>
               </div>
@@ -179,7 +184,7 @@ export const LocationFooter: React.FC = () => {
 
             </div>
 
-            {/* Right: Direct Contact Form */}
+            {/* Right: Direct Contact Form (Without Email) */}
             <div className="lg:col-span-6 bg-emerald-900/60 rounded-2xl sm:rounded-3xl p-6 sm:p-8 border border-emerald-700/60 flex flex-col justify-between">
               <div className="space-y-4">
                 <div className="space-y-1">
@@ -213,7 +218,7 @@ export const LocationFooter: React.FC = () => {
                     <input
                       type="tel"
                       required
-                      placeholder="Ex: (21) 98765-4321"
+                      placeholder="Ex: (21) 97150-2301"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                       className="w-full px-4 py-3 rounded-2xl bg-emerald-950/80 border border-emerald-700/80 text-white text-sm focus:outline-none focus:ring-2 focus:ring-emerald-400 placeholder:text-emerald-300/40"
@@ -253,10 +258,12 @@ export const LocationFooter: React.FC = () => {
 
                   <button
                     type="submit"
+                    aria-label="Conversar com Adriana no WhatsApp"
+                    title="Conversar com Adriana no WhatsApp"
                     className="w-full py-4 rounded-2xl bg-emerald-400 hover:bg-emerald-300 text-emerald-950 font-black text-xs sm:text-sm uppercase tracking-wider shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer"
                   >
                     <Send className="w-4 h-4" />
-                    <span>Enviar para a Recepção da Clínica</span>
+                    <span>Enviar Mensagem pelo WhatsApp</span>
                   </button>
 
                   {submitted && (
@@ -274,7 +281,9 @@ export const LocationFooter: React.FC = () => {
                   href={whatsappDirect}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full py-3 px-4 rounded-2xl bg-emerald-950/90 hover:bg-emerald-950 text-emerald-200 border border-emerald-600/40 text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 transition"
+                  aria-label="Conversar com Adriana no WhatsApp"
+                  title="Conversar com Adriana no WhatsApp"
+                  className="w-full py-3.5 px-4 rounded-2xl bg-emerald-950/90 hover:bg-emerald-950 text-emerald-200 border border-emerald-600/40 text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 transition cursor-pointer"
                 >
                   <MessageCircle className="w-4 h-4 text-emerald-300" />
                   <span>Agendamento Rápido no WhatsApp</span>
@@ -285,43 +294,46 @@ export const LocationFooter: React.FC = () => {
           </div>
         </div>
 
-        {/* Newsletter Subscription Row (Flexra requirement) */}
+        {/* Direct Channels Showcase Row (Replaces Email Newsletter) */}
         <div className="p-8 sm:p-10 rounded-3xl sm:rounded-4xl bg-gradient-to-r from-emerald-900 via-emerald-950 to-emerald-900 border border-emerald-700/50 mb-16 flex flex-col lg:flex-row items-center justify-between gap-6">
-          <div className="space-y-1.5 text-center lg:text-left">
-            <span className="text-[11px] font-bold uppercase tracking-wider text-emerald-300">
-              Newsletter Dra. Adriana Martins
-            </span>
-            <h4 className="font-serif text-2xl font-bold text-white">
-              Dicas de Postura, Biomecânica & Saúde no seu E-mail
+          <div className="space-y-1.5 text-center lg:text-left max-w-xl">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-800/60 border border-emerald-400/30 text-emerald-300 text-[11px] font-bold uppercase tracking-wider">
+              <Sparkles className="w-3 h-3 text-emerald-400" />
+              <span>Canais Oficiais de Contato</span>
+            </div>
+            <h4 className="font-serif text-2xl sm:text-3xl font-bold text-white">
+              Acompanhe a Dra. Adriana no Instagram & WhatsApp
             </h4>
-            <p className="text-xs sm:text-sm text-emerald-200/80 font-light">
-              Receba orientações semanais sobre prevenção de lesões, exercícios posturais e hábitos saudáveis.
+            <p className="text-xs sm:text-sm text-emerald-200/80 font-light leading-relaxed">
+              Conteúdos práticos de postura, bastidores clínicos e atendimento direto sem intermediários.
             </p>
           </div>
 
-          <form onSubmit={handleNewsletterSubmit} className="w-full lg:w-auto flex flex-col sm:flex-row gap-3">
-            <input
-              type="email"
-              required
-              placeholder="Seu melhor e-mail"
-              value={newsletterEmail}
-              onChange={(e) => setNewsletterEmail(e.target.value)}
-              className="w-full sm:w-80 px-5 py-3.5 rounded-2xl bg-emerald-950 border border-emerald-700/80 text-white text-sm focus:outline-none focus:ring-2 focus:ring-emerald-400 placeholder:text-emerald-300/40"
-            />
-            <button
-              type="submit"
-              className="px-6 py-3.5 rounded-2xl bg-emerald-400 hover:bg-white text-emerald-950 font-black text-xs uppercase tracking-wider transition-all whitespace-nowrap shadow-md cursor-pointer flex items-center justify-center gap-1.5"
+          <div className="w-full lg:w-auto flex flex-col sm:flex-row gap-3">
+            <a
+              href={CLINIC_CONTACT.instagramUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Visitar Instagram @pilatesmoradadosol"
+              title="Visitar Instagram @pilatesmoradadosol"
+              className="inline-flex items-center justify-center gap-2 px-6 py-4 rounded-2xl bg-gradient-to-r from-fuchsia-600 via-pink-600 to-amber-600 hover:from-fuchsia-500 hover:to-amber-500 text-white font-bold text-xs sm:text-sm uppercase tracking-wider shadow-lg transition-all transform hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
             >
-              <span>Inscrever-se</span>
-              <ArrowRight className="w-4 h-4" />
-            </button>
-          </form>
+              <Instagram className="w-4 h-4" />
+              <span>Visitar Instagram @pilatesmoradadosol</span>
+            </a>
 
-          {newsletterSubscribed && (
-            <div className="w-full text-center text-xs font-bold text-emerald-300">
-              ✓ Inscrição confirmada! Em breve enviaremos novos conteúdos.
-            </div>
-          )}
+            <a
+              href={whatsappDirect}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Conversar com Adriana no WhatsApp"
+              title="Conversar com Adriana no WhatsApp"
+              className="inline-flex items-center justify-center gap-2 px-6 py-4 rounded-2xl bg-emerald-400 hover:bg-emerald-300 text-emerald-950 font-black text-xs sm:text-sm uppercase tracking-wider shadow-lg transition-all transform hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
+            >
+              <MessageCircle className="w-4 h-4" />
+              <span>Falar no WhatsApp</span>
+            </a>
+          </div>
         </div>
 
         {/* Bottom Bar: Logo, Navigation Links, Copyright & CREFITO */}
@@ -337,7 +349,7 @@ export const LocationFooter: React.FC = () => {
             </p>
           </div>
 
-          <div className="flex items-center gap-4 text-xs font-medium">
+          <div className="flex items-center gap-3.5 text-xs font-medium flex-wrap justify-center">
             <a href="#inicio" className="hover:text-white transition">Início</a>
             <span>•</span>
             <a href="#sobre" className="hover:text-white transition">Sobre Nós</a>
@@ -346,7 +358,29 @@ export const LocationFooter: React.FC = () => {
             <span>•</span>
             <a href="#avaliacao" className="hover:text-white transition">Triagem</a>
             <span>•</span>
-            <a href={CLINIC_CONTACT.instagramUrl} target="_blank" rel="noopener noreferrer" className="hover:text-white transition">Instagram</a>
+            <a
+              href={CLINIC_CONTACT.instagramUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white transition inline-flex items-center gap-1 text-emerald-300"
+              aria-label="Visitar Instagram @pilatesmoradadosol"
+              title="Visitar Instagram @pilatesmoradadosol"
+            >
+              <Instagram className="w-3.5 h-3.5" />
+              <span>@pilatesmoradadosol</span>
+            </a>
+            <span>•</span>
+            <a
+              href={whatsappDirect}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white transition inline-flex items-center gap-1 text-emerald-300"
+              aria-label="Conversar com Adriana no WhatsApp"
+              title="Conversar com Adriana no WhatsApp"
+            >
+              <MessageCircle className="w-3.5 h-3.5" />
+              <span>(21) 97150-2301</span>
+            </a>
           </div>
         </div>
 
