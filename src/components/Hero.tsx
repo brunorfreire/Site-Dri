@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'motion/react';
 import {
   ArrowRight,
@@ -8,8 +8,6 @@ import {
   HeartHandshake,
   CheckCircle2,
   MessageSquare,
-  Camera,
-  Check,
 } from 'lucide-react';
 import { CLINIC_CONTACT } from '../data/content';
 import clinicBg from '../assets/images/clinic_pilates_rehab_1789567620427.jpg';
@@ -21,43 +19,12 @@ interface HeroProps {
 
 export const Hero: React.FC<HeroProps> = ({ onOpenAssessment }) => {
   const heroRef = useRef<HTMLDivElement>(null);
-  const fileInputRef = useRef<HTMLInputElement>(null);
-  const [imageSrc, setImageSrc] = useState<string>(adrianaPhysioImg);
-  const [isHovered, setIsHovered] = useState<boolean>(false);
-  const [statusMsg, setStatusMsg] = useState<string | null>(null);
 
   // Parallax scroll effect on header background
   const { scrollYProgress } = useScroll({
     target: heroRef,
     offset: ['start start', 'end start']
   });
-
-  const handleFileUpload = async (file: File) => {
-    if (!import.meta.env.DEV) return;
-    if (!file || !file.type.startsWith('image/')) return;
-    const reader = new FileReader();
-    reader.onload = async () => {
-      const dataBase64 = reader.result as string;
-      try {
-        const res = await fetch('/api/save-image', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            fileName: 'dra_adriana_fisioterapia.jpg',
-            dataBase64,
-          }),
-        });
-        if (res.ok) {
-          setImageSrc(dataBase64);
-          setStatusMsg('Foto permanente salva!');
-          setTimeout(() => setStatusMsg(null), 4000);
-        }
-      } catch (err) {
-        console.error('Failed to save permanent image:', err);
-      }
-    };
-    reader.readAsDataURL(file);
-  };
 
   // Background shifts smoothly downward on scroll (gentle parallax)
   const bgY = useTransform(scrollYProgress, [0, 1], ['0%', '24%']);
@@ -188,71 +155,13 @@ export const Hero: React.FC<HeroProps> = ({ onOpenAssessment }) => {
               <div className="absolute inset-0 bg-gradient-to-tr from-emerald-500 to-teal-400 rounded-3xl sm:rounded-4xl transform rotate-3 scale-102 opacity-30 blur-sm -z-10" />
 
               {/* Main Card */}
-              <div
-                className="relative overflow-hidden rounded-3xl sm:rounded-4xl bg-slate-900 p-2.5 shadow-2xl border border-white/20 group"
-                onMouseEnter={() => import.meta.env.DEV && setIsHovered(true)}
-                onMouseLeave={() => import.meta.env.DEV && setIsHovered(false)}
-                onDragOver={(e) => {
-                  if (import.meta.env.DEV) {
-                    e.preventDefault();
-                    setIsHovered(true);
-                  }
-                }}
-                onDrop={(e) => {
-                  if (import.meta.env.DEV) {
-                    e.preventDefault();
-                    setIsHovered(false);
-                    const file = e.dataTransfer.files?.[0];
-                    if (file) handleFileUpload(file);
-                  }
-                }}
-              >
+              <div className="relative overflow-hidden rounded-3xl sm:rounded-4xl bg-slate-900 p-2.5 shadow-2xl border border-white/20 group">
                 <img
-                  src={imageSrc}
-                  alt="Adriana Martins em ambiente de fisioterapia"
+                  src={adrianaPhysioImg}
+                  alt="Dra. Adriana Martins - Fisioterapeuta Especialista em Traumato-Ortopedia e RPG"
                   className="w-full h-auto object-cover object-top rounded-2xl sm:rounded-3xl aspect-[3/4]"
                   referrerPolicy="no-referrer"
                 />
-
-                {/* Dev-Only Photo Replacement Trigger (Excluded from production build) */}
-                {import.meta.env.DEV && (
-                  <>
-                    <input
-                      type="file"
-                      ref={fileInputRef}
-                      onChange={(e) => {
-                        const file = e.target.files?.[0];
-                        if (file) handleFileUpload(file);
-                      }}
-                      accept="image/*"
-                      className="hidden"
-                    />
-
-                    {isHovered && (
-                      <div
-                        onClick={() => fileInputRef.current?.click()}
-                        className="absolute inset-0 bg-slate-950/70 backdrop-blur-xs flex flex-col items-center justify-center text-center p-6 cursor-pointer rounded-2xl sm:rounded-3xl transition-opacity animate-in fade-in duration-200 z-20"
-                      >
-                        <div className="w-12 h-12 rounded-full bg-emerald-600/90 text-white flex items-center justify-center mb-3 shadow-lg">
-                          <Camera className="w-6 h-6" />
-                        </div>
-                        <span className="text-sm font-bold text-white tracking-wide">
-                          Substituir Foto Permanente
-                        </span>
-                        <span className="text-xs text-emerald-200/80 mt-1 max-w-[220px]">
-                          Clique ou solte o arquivo JPG aqui para salvar diretamente no projeto
-                        </span>
-                      </div>
-                    )}
-
-                    {statusMsg && (
-                      <div className="absolute top-4 left-4 right-4 z-30 p-2.5 rounded-xl bg-emerald-800 text-white text-xs font-semibold flex items-center gap-2 shadow-lg border border-emerald-400">
-                        <Check className="w-4 h-4 text-emerald-300 flex-shrink-0" />
-                        <span>{statusMsg}</span>
-                      </div>
-                    )}
-                  </>
-                )}
 
                 {/* Floating Authority Badge */}
                 <div className="absolute bottom-4 sm:bottom-6 left-4 sm:left-6 right-4 sm:right-6 p-3.5 sm:p-4 rounded-2xl bg-emerald-950/90 backdrop-blur-md border border-white/20 shadow-xl">
