@@ -11,7 +11,7 @@ import {
 } from 'lucide-react';
 import { CLINIC_CONTACT } from '../data/content';
 import clinicBg from '../assets/images/clinic_pilates_rehab_1789567620427.jpg';
-import adrianaPhysioImg from '../assets/images/dra_adriana_fisioterapia.jpg';
+import adrianaHeroImg from '../assets/adriana-hero-v2.jpg';
 
 interface HeroProps {
   onOpenAssessment: () => void;
@@ -157,7 +157,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenAssessment }) => {
               {/* Main Card */}
               <div className="relative overflow-hidden rounded-3xl sm:rounded-4xl bg-slate-900 p-2.5 shadow-2xl border border-white/20 group">
                 <img
-                  src={adrianaPhysioImg}
+                  src={adrianaHeroImg}
                   alt="Dra. Adriana Martins - Fisioterapeuta Especialista em Traumato-Ortopedia e RPG"
                   className="w-full h-auto object-cover object-top rounded-2xl sm:rounded-3xl aspect-[3/4]"
                   referrerPolicy="no-referrer"
