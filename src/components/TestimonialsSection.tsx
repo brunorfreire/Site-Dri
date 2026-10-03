@@ -73,9 +73,6 @@ export const TestimonialsSection: React.FC = () => {
                         alt={testimonial.name}
                         className="w-full h-full object-cover"
                         containerClassName="w-full h-full"
-                        label="Foto"
-                        compact={true}
-                        buttonPosition="bottom-right"
                       />
                     </div>
                     <div>

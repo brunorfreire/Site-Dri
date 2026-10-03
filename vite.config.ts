@@ -2,60 +2,59 @@ import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
 import fs from 'fs';
-import {defineConfig} from 'vite';
+import { defineConfig, Plugin } from 'vite';
+
+function saveImageDevPlugin(): Plugin {
+  return {
+    name: 'save-image-dev-plugin',
+    configureServer(server) {
+      server.middlewares.use('/api/save-image', (req, res) => {
+        if (req.method === 'POST') {
+          let body = '';
+          req.on('data', (chunk) => {
+            body += chunk;
+          });
+          req.on('end', () => {
+            try {
+              const { fileName, dataBase64 } = JSON.parse(body);
+              if (!fileName || !dataBase64) {
+                res.statusCode = 400;
+                res.setHeader('Content-Type', 'application/json');
+                res.end(JSON.stringify({ error: 'Missing fileName or dataBase64' }));
+                return;
+              }
+              const safeFileName = path.basename(fileName);
+              const targetDir = path.resolve(__dirname, 'src/assets/images');
+              if (!fs.existsSync(targetDir)) {
+                fs.mkdirSync(targetDir, { recursive: true });
+              }
+              const base64Data = dataBase64.replace(/^data:image\/\w+;base64,/, '');
+              const buffer = Buffer.from(base64Data, 'base64');
+              const targetPath = path.resolve(targetDir, safeFileName);
+              fs.writeFileSync(targetPath, buffer);
+              res.setHeader('Content-Type', 'application/json');
+              res.end(JSON.stringify({ success: true, fileName: safeFileName }));
+            } catch (err: any) {
+              res.statusCode = 500;
+              res.setHeader('Content-Type', 'application/json');
+              res.end(JSON.stringify({ error: err.message }));
+            }
+          });
+        } else {
+          res.statusCode = 405;
+          res.end();
+        }
+      });
+    },
+  };
+}
 
 export default defineConfig(() => {
   return {
     plugins: [
       react(),
       tailwindcss(),
-      {
-        name: 'save-images-middleware',
-        configureServer(server) {
-          const handleSave = (req: any, res: any) => {
-            if (req.method === 'POST') {
-              let body = '';
-              req.on('data', (chunk: any) => { body += chunk; });
-              req.on('end', () => {
-                try {
-                  const { id, base64Data } = JSON.parse(body);
-                  if (base64Data) {
-                    const cleanBase64 = base64Data.replace(/^data:image\/\w+;base64,/, '');
-                    const buffer = Buffer.from(cleanBase64, 'base64');
-                    const targetDir = path.resolve(__dirname, 'src/assets/images');
-                    if (!fs.existsSync(targetDir)) {
-                      fs.mkdirSync(targetDir, { recursive: true });
-                    }
-                    if (buffer.length > 1024) {
-                      const cleanId = id ? id.replace(/[^a-zA-Z0-9_-]/g, '_') : 'custom';
-                      const filename = `custom_${cleanId}.jpg`;
-                      fs.writeFileSync(path.resolve(targetDir, filename), buffer);
-
-                      if (cleanId === 'hero' || cleanId === 'dra_adriana_hero') {
-                        fs.writeFileSync(path.resolve(targetDir, 'dra_adriana_hero_1789567477809.jpg'), buffer);
-                      }
-
-                      res.writeHead(200, { 'Content-Type': 'application/json' });
-                      res.end(JSON.stringify({ success: true, path: `/src/assets/images/${filename}` }));
-                      return;
-                    }
-                  }
-                } catch (e) {
-                  console.error('Error saving image:', e);
-                }
-                res.writeHead(400, { 'Content-Type': 'application/json' });
-                res.end(JSON.stringify({ error: 'Invalid payload' }));
-              });
-            } else {
-              res.writeHead(405);
-              res.end();
-            }
-          };
-
-          server.middlewares.use('/api/save-hero-image', handleSave);
-          server.middlewares.use('/api/save-image', handleSave);
-        }
-      }
+      saveImageDevPlugin(),
     ],
     resolve: {
       alias: {
@@ -69,3 +68,4 @@ export default defineConfig(() => {
     },
   };
 });
+

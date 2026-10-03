@@ -152,7 +152,7 @@ export const AudienceSection: React.FC<AudienceSectionProps> = ({ onOpenAssessme
 
             {/* Right Side: Key Pillars & Community Focus */}
             <div className="lg:col-span-5 space-y-4">
-              {/* Audience Specific Visual with Drag & Drop replacement */}
+              {/* Audience Specific Visual */}
               <div className="rounded-2xl overflow-hidden shadow-xl border border-white/10 bg-slate-900 h-48 sm:h-52 relative">
                 <EditableImage
                   storageKey={`audience_${active.id}`}
@@ -160,9 +160,6 @@ export const AudienceSection: React.FC<AudienceSectionProps> = ({ onOpenAssessme
                   alt={`Atendimento especializado para ${active.title}`}
                   className="w-full h-full object-cover"
                   containerClassName="w-full h-full"
-                  label="Substituir Foto"
-                  compact={true}
-                  buttonPosition="top-right"
                 >
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent pointer-events-none" />
                   <div className="absolute bottom-3 left-4 right-4 pointer-events-none">

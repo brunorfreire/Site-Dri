@@ -1,6 +1,6 @@
 import React from 'react';
 import { Target, Compass, Award, ShieldCheck, Trophy, Sparkles, CheckCircle2, ArrowRight } from 'lucide-react';
-import worldMasterImg from '../assets/images/dra_adriana_world_master_1789567604246.jpg';
+import worldMasterImg from '../assets/images/dra_adriana_quimono_preto.jpg';
 import clinicImg from '../assets/images/clinic_pilates_rehab_1789567620427.jpg';
 import { CREDENTIALS } from '../data/content';
 import { EditableImage } from './EditableImage';
@@ -40,11 +40,9 @@ export const AdvancedCareSection: React.FC<AdvancedCareSectionProps> = ({ onOpen
               <EditableImage
                 storageKey="advanced_care_dra_adriana"
                 defaultSrc={worldMasterImg}
-                alt="Dra. Adriana Martins campeã com a medalha World Master IBJJF Jiu-Jitsu 2024"
-                className="w-full h-auto object-cover aspect-[3/4]"
+                alt="Dra. Adriana Martins com quimono preto - Campeã World Master IBJJF"
+                className="w-full h-auto object-cover object-top aspect-[3/4]"
                 containerClassName="w-full"
-                label="Substituir Foto"
-                buttonPosition="top-right"
               >
                 {/* Tournament Ribbon Overlay */}
                 <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-emerald-950 via-emerald-950/85 to-transparent p-6 sm:p-8 text-white pointer-events-none">

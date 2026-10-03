@@ -32,9 +32,6 @@ export const ServiceModal: React.FC<ServiceModalProps> = ({
             alt={service.title}
             className="w-full h-full object-cover"
             containerClassName="w-full h-full"
-            label="Substituir Foto"
-            compact={true}
-            buttonPosition="top-left"
           >
             <div className="absolute inset-0 bg-gradient-to-t from-emerald-950 via-emerald-950/60 to-transparent pointer-events-none" />
             <button

@@ -94,9 +94,6 @@ export const TherapeuticTreatments: React.FC<TherapeuticTreatmentsProps> = ({ on
                       alt={service.title}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       containerClassName="w-full h-full"
-                      label="Substituir"
-                      compact={true}
-                      buttonPosition="top-right"
                     >
                       <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
                       
