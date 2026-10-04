@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { Sparkles, Check, Eye, X, ZoomIn } from 'lucide-react';
 import clinicImg from '../assets/images/clinic_pilates_rehab_1789567620427.jpg';
 import { EditableImage } from './EditableImage';
@@ -229,55 +230,58 @@ export const ClinicGallery: React.FC = () => {
       </div>
 
       {/* Visitor Lightbox Viewer */}
-      {activeModalImage && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-slate-950/85 backdrop-blur-md animate-fade-in"
-          onClick={() => setActiveModalImage(null)}
-          role="dialog"
-          aria-modal="true"
-          aria-label={activeModalImage.title}
-        >
+      {activeModalImage && typeof document !== 'undefined' &&
+        createPortal(
           <div
-            className="relative max-w-4xl w-full bg-slate-900 rounded-3xl overflow-hidden shadow-2xl border border-white/10"
-            onClick={(e) => e.stopPropagation()}
+            className="fixed inset-0 z-[70] flex items-center justify-center p-3 sm:p-6 bg-slate-950/85 backdrop-blur-md animate-fade-in"
+            onClick={() => setActiveModalImage(null)}
+            role="dialog"
+            aria-modal="true"
+            aria-label={activeModalImage.title}
           >
-            {/* Close Button */}
-            <button
-              onClick={() => setActiveModalImage(null)}
-              aria-label="Fechar visualização da imagem"
-              className="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-black/60 hover:bg-black/90 text-white flex items-center justify-center border border-white/20 transition-all cursor-pointer"
+            <div
+              className="relative max-w-4xl w-full bg-slate-900 rounded-3xl overflow-hidden shadow-2xl border border-white/10 max-h-[95vh] flex flex-col"
+              onClick={(e) => e.stopPropagation()}
             >
-              <X className="w-5 h-5" />
-            </button>
+              {/* Close Button >= 44x44px */}
+              <button
+                type="button"
+                onClick={() => setActiveModalImage(null)}
+                aria-label="Fechar visualização da imagem"
+                className="absolute top-3 right-3 sm:top-4 sm:right-4 z-20 w-11 h-11 rounded-full bg-black/60 hover:bg-black/90 text-white flex items-center justify-center border border-white/20 transition-all cursor-pointer focus:outline-none focus:ring-2 focus:ring-teal-400"
+              >
+                <X className="w-5 h-5" />
+              </button>
 
-            {/* Enlarged Image */}
-            <div className="relative max-h-[70vh] overflow-hidden bg-black flex items-center justify-center">
-              <img
-                src={activeModalImage.src}
-                alt={activeModalImage.title}
-                className="max-h-[70vh] w-auto max-w-full object-contain"
-              />
-            </div>
+              {/* Enlarged Image */}
+              <div className="relative max-h-[60vh] sm:max-h-[70vh] overflow-hidden bg-black flex items-center justify-center">
+                <img
+                  src={activeModalImage.src}
+                  alt={activeModalImage.title}
+                  className="max-h-[60vh] sm:max-h-[70vh] w-auto max-w-full object-contain"
+                />
+              </div>
 
-            {/* Caption */}
-            <div className="p-6 bg-slate-900 text-white space-y-2">
-              {activeModalImage.tag && (
-                <span className="text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-teal-900/80 text-teal-300 border border-teal-500/30">
-                  {activeModalImage.tag}
-                </span>
-              )}
-              <h3 className="text-lg sm:text-xl font-bold font-serif">
-                {activeModalImage.title}
-              </h3>
-              {activeModalImage.desc && (
-                <p className="text-sm text-slate-300 leading-relaxed">
-                  {activeModalImage.desc}
-                </p>
-              )}
+              {/* Caption */}
+              <div className="p-4 sm:p-6 bg-slate-900 text-white space-y-2 overflow-y-auto">
+                {activeModalImage.tag && (
+                  <span className="text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-teal-900/80 text-teal-300 border border-teal-500/30">
+                    {activeModalImage.tag}
+                  </span>
+                )}
+                <h3 className="text-base sm:text-xl font-bold font-serif">
+                  {activeModalImage.title}
+                </h3>
+                {activeModalImage.desc && (
+                  <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                    {activeModalImage.desc}
+                  </p>
+                )}
+              </div>
             </div>
-          </div>
-        </div>
-      )}
+          </div>,
+          document.body
+        )}
     </section>
   );
 };

@@ -102,23 +102,26 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAssessment }) => {
         </div>
 
         {/* Mobile Menu Button */}
-        <div className="flex items-center gap-2 lg:hidden">
+        <div className="flex items-center gap-1.5 sm:gap-2 lg:hidden">
           <button
+            type="button"
             onClick={onOpenAssessment}
-            className="px-3 py-1.5 rounded-lg text-xs font-bold text-emerald-950 bg-emerald-300 hover:bg-white transition"
+            className="px-3 py-2 rounded-xl text-xs font-extrabold text-emerald-950 bg-emerald-300 hover:bg-white transition min-h-[40px] flex items-center justify-center cursor-pointer shadow-sm active:scale-95"
           >
             Avaliação
           </button>
 
           <button
+            type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             id="mobile-menu-toggle"
-            className={`p-2 rounded-xl focus:outline-none ${
+            className={`w-11 h-11 rounded-xl flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-emerald-400 transition cursor-pointer ${
               scrolled
                 ? 'text-slate-700 hover:bg-slate-100'
                 : 'text-white hover:bg-white/10'
             }`}
-            aria-label="Abrir menu de navegação"
+            aria-label={mobileMenuOpen ? 'Fechar menu de navegação' : 'Abrir menu de navegação'}
+            aria-expanded={mobileMenuOpen}
           >
             {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
@@ -127,14 +130,14 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAssessment }) => {
 
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
-        <div className="lg:hidden bg-white border-b border-slate-200 shadow-2xl px-5 pt-4 pb-7 space-y-4 text-slate-800">
+        <div className="lg:hidden bg-white border-b border-slate-200 shadow-2xl px-5 pt-3 pb-6 space-y-3 text-slate-800 max-h-[calc(100dvh-4.5rem)] overflow-y-auto">
           <div className="flex flex-col space-y-1">
             {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className="px-3 py-2.5 rounded-xl text-sm font-bold text-slate-700 hover:bg-emerald-50 hover:text-emerald-900 transition"
+                className="px-3.5 py-3 rounded-xl text-sm font-bold text-slate-700 hover:bg-emerald-50 hover:text-emerald-900 transition flex items-center min-h-[44px]"
               >
                 {link.label}
               </a>
@@ -143,11 +146,12 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAssessment }) => {
 
           <div className="pt-3 border-t border-slate-100 flex flex-col gap-2.5">
             <button
+              type="button"
               onClick={() => {
                 setMobileMenuOpen(false);
                 onOpenAssessment();
               }}
-              className="w-full py-3 rounded-xl text-center font-bold text-sm text-white bg-emerald-900 hover:bg-emerald-800 shadow-md transition"
+              className="w-full py-3.5 rounded-xl text-center font-bold text-sm text-white bg-emerald-900 hover:bg-emerald-800 shadow-md transition min-h-[48px] flex items-center justify-center cursor-pointer"
             >
               QUERO MINHA AVALIAÇÃO
             </button>
@@ -157,7 +161,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAssessment }) => {
               rel="noopener noreferrer"
               aria-label="Conversar com Adriana no WhatsApp"
               title="Conversar com Adriana no WhatsApp"
-              className="w-full py-2.5 rounded-xl text-center font-semibold text-sm text-emerald-900 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 transition flex items-center justify-center gap-2"
+              className="w-full py-3 rounded-xl text-center font-semibold text-sm text-emerald-900 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 transition flex items-center justify-center gap-2 min-h-[44px]"
             >
               <MessageCircle className="w-4 h-4 text-emerald-700" />
               Falar no WhatsApp

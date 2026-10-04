@@ -12,81 +12,96 @@ export const Logo: React.FC<LogoProps> = ({
   lightMode = false
 }) => {
   return (
-    <div className={`flex items-center gap-2 select-none ${className}`}>
-      {/* Exact AM Monogram with Vertebral Spine curve matching mockup */}
-      <div className="relative flex items-center justify-center">
+    <div className={`flex items-center gap-2.5 sm:gap-3 select-none ${className}`}>
+      {/* Stylized AM Spinal & Dynamic Motion Monogram Icon */}
+      <div className="relative w-9 h-9 sm:w-11 sm:h-11 flex-shrink-0 flex items-center justify-center rounded-xl bg-gradient-to-br from-teal-500 via-teal-600 to-sky-700 shadow-md shadow-teal-500/15 p-1 sm:p-1.5 ring-1 ring-white/20">
         <svg
-          viewBox="0 0 110 60"
-          className="h-10 sm:h-12 w-auto"
+          viewBox="0 0 100 100"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
+          className="w-full h-full"
         >
-          {/* Stylized Vertebral Spine in soft mint-cyan */}
+          {/* Subtle Vertebral Column Arc Guides */}
           <path
-            d="M42 52 C38 42, 34 32, 38 22 C41 16, 38 10, 36 6"
-            stroke="#5fa8ab"
-            strokeWidth="2.8"
-            strokeLinecap="round"
-            strokeDasharray="1.5 4"
-          />
-          {/* Spine Vertebrae Discs */}
-          <circle cx="36" cy="6" r="2.2" fill="#5fa8ab" />
-          <circle cx="38" cy="13" r="2.4" fill="#5fa8ab" />
-          <circle cx="39" cy="21" r="2.5" fill="#5fa8ab" />
-          <circle cx="37" cy="30" r="2.5" fill="#5fa8ab" />
-          <circle cx="35" cy="38" r="2.4" fill="#5fa8ab" />
-          <circle cx="37" cy="45" r="2.2" fill="#5fa8ab" />
-          <circle cx="42" cy="52" r="2" fill="#5fa8ab" />
-
-          {/* Letter A in elegant serif typeface */}
-          <path
-            d="M8 50 L18 50 M13 50 L27 8 L32 8 L46 50 M41 50 L51 50"
-            stroke={lightMode ? '#ffffff' : '#27525d'}
-            strokeWidth="3.4"
-            strokeLinecap="square"
-            strokeLinejoin="miter"
-          />
-          <path
-            d="M20 34 L39 34"
-            stroke={lightMode ? '#ffffff' : '#27525d'}
-            strokeWidth="2.4"
-          />
-
-          {/* Letter M in elegant serif typeface */}
-          <path
-            d="M48 50 L56 50 M52 50 L52 8 M47 8 L55 8"
-            stroke={lightMode ? '#ffffff' : '#27525d'}
-            strokeWidth="3.2"
-            strokeLinecap="square"
-          />
-          <path
-            d="M52 8 L70 42 L88 8"
-            stroke={lightMode ? '#ffffff' : '#27525d'}
+            d="M50 14 C43 28, 57 42, 50 56 C43 70, 56 82, 50 88"
+            stroke="rgba(255, 255, 255, 0.4)"
             strokeWidth="3"
-            strokeLinecap="square"
-            strokeLinejoin="miter"
+            strokeLinecap="round"
+            strokeDasharray="2 6"
+          />
+          {/* Vertebral disc nodes */}
+          <circle cx="50" cy="18" r="2.5" fill="#ffffff" opacity="0.9" />
+          <circle cx="48" cy="36" r="2.5" fill="#ffffff" opacity="0.9" />
+          <circle cx="52" cy="54" r="2.5" fill="#ffffff" opacity="0.9" />
+          <circle cx="48" cy="72" r="2.5" fill="#ffffff" opacity="0.9" />
+          <circle cx="50" cy="86" r="2" fill="#ffffff" opacity="0.9" />
+
+          {/* Letter 'A' sweeping upward with spinal curve */}
+          <path
+            d="M20 84 L38 22 C42 16, 48 16, 51 22 L62 50"
+            stroke="#ffffff"
+            strokeWidth="7"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          {/* Dynamic A-Crossbar extending into wave motion */}
+          <path
+            d="M26 62 C34 58, 48 60, 58 62"
+            stroke="#99f6e4"
+            strokeWidth="6"
+            strokeLinecap="round"
+          />
+
+          {/* Letter 'M' flowing with athletic curvature */}
+          <path
+            d="M50 84 L56 36 C59 28, 67 28, 71 36 L79 56 C82 62, 87 62, 89 54 L92 42"
+            stroke="#e0f2fe"
+            strokeWidth="6"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
           <path
-            d="M88 8 L88 50 M84 50 L92 50 M84 8 L92 8"
-            stroke={lightMode ? '#ffffff' : '#27525d'}
-            strokeWidth="3.2"
-            strokeLinecap="square"
+            d="M72 38 L84 84"
+            stroke="#ffffff"
+            strokeWidth="6.5"
+            strokeLinecap="round"
           />
         </svg>
       </div>
 
-      {variant === 'full' && (
-        <div className="hidden sm:flex flex-col leading-tight">
-          <span
-            className={`text-sm font-extrabold tracking-tight font-serif ${
-              lightMode ? 'text-white' : 'text-[#234b56]'
-            }`}
-          >
-            ADRIANA MARTINS
-          </span>
-          <span className="text-[10px] font-bold tracking-widest uppercase text-teal-600">
-            Fisioterapia & Pilates
-          </span>
+      {variant !== 'monogram' && (
+        <div className="flex flex-col">
+          <div className="flex items-center gap-1.5">
+            <span
+              className={`font-extrabold tracking-tight text-sm sm:text-lg leading-tight ${
+                lightMode ? 'text-white' : 'text-slate-900'
+              }`}
+            >
+              DRA. ADRIANA MARTINS
+            </span>
+          </div>
+          <div className="flex items-center gap-1 sm:gap-1.5">
+            <span className="text-[10px] sm:text-[11px] font-bold tracking-wider text-teal-600 uppercase">
+              Fisioterapia
+            </span>
+            <span className="text-slate-300">•</span>
+            <span
+              className={`text-[9px] sm:text-[10px] font-semibold tracking-wider uppercase ${
+                lightMode ? 'text-teal-200' : 'text-sky-800'
+              }`}
+            >
+              Alta Performance
+            </span>
+          </div>
+          {variant === 'full' && (
+            <span
+              className={`hidden sm:block text-[9px] font-medium tracking-wide ${
+                lightMode ? 'text-slate-300' : 'text-slate-500'
+              }`}
+            >
+              RPG • Terapia Manual • Pilates Clínico
+            </span>
+          )}
         </div>
       )}
     </div>

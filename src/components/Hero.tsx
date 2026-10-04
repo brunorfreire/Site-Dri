@@ -77,53 +77,54 @@ export const Hero: React.FC<HeroProps> = ({ onOpenAssessment }) => {
 
             {/* Main Headline with Serif Typography & Italic Touches */}
             <div className="space-y-4">
-              <h1 className="font-serif text-3xl sm:text-5xl lg:text-[3.6rem] font-bold tracking-tight text-white leading-[1.14]">
+              <h1 className="font-serif text-2xl sm:text-4xl md:text-5xl lg:text-[3.6rem] font-bold tracking-tight text-white leading-[1.15]">
                 Sua Jornada para um <br className="hidden sm:inline" />
                 <span className="italic font-normal text-emerald-300">Corpo sem Dor</span> e em <br className="hidden sm:inline" />
                 <span className="italic font-normal text-teal-200">Movimento Pleno</span> Começa Aqui.
               </h1>
               
-              <p className="text-base sm:text-lg text-emerald-100/90 leading-relaxed max-w-2xl font-light">
+              <p className="text-sm sm:text-lg text-emerald-100/90 leading-relaxed max-w-2xl font-light">
                 Sob o atendimento direto da <strong>Dra. Adriana Martins</strong> (Fisioterapeuta graduada em 2004, Especialista em Traumato-Ortopedia pela UGF e Campeã Mundial Master), unimos diagnóstico biomecânico, RPG, terapia manual e Pilates clínico em aparelhos para devolver sua liberdade de viver e treinar.
               </p>
             </div>
 
             {/* Highlight Badges with Rounded Corners */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-1">
-              <div className="flex items-center gap-3 p-3 rounded-2xl bg-white/10 backdrop-blur-md border border-white/15">
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3 pt-1">
+              <div className="flex items-center gap-2.5 sm:gap-3 p-2.5 sm:p-3 rounded-2xl bg-white/10 backdrop-blur-md border border-white/15">
                 <ShieldCheck className="w-5 h-5 text-emerald-300 flex-shrink-0" />
-                <div className="text-left">
-                  <div className="text-xs font-bold text-white">+20 Anos</div>
-                  <div className="text-[11px] text-emerald-200/80">Prática Clínica</div>
+                <div className="text-left min-w-0">
+                  <div className="text-xs font-bold text-white truncate">+20 Anos</div>
+                  <div className="text-[10px] sm:text-[11px] text-emerald-200/80 truncate">Prática Clínica</div>
                 </div>
               </div>
 
-              <div className="flex items-center gap-3 p-3 rounded-2xl bg-white/10 backdrop-blur-md border border-white/15">
+              <div className="flex items-center gap-2.5 sm:gap-3 p-2.5 sm:p-3 rounded-2xl bg-white/10 backdrop-blur-md border border-white/15">
                 <Award className="w-5 h-5 text-amber-300 flex-shrink-0" />
-                <div className="text-left">
-                  <div className="text-xs font-bold text-white">World Master</div>
-                  <div className="text-[11px] text-emerald-200/80">Campeã IBJJF 2024</div>
+                <div className="text-left min-w-0">
+                  <div className="text-xs font-bold text-white truncate">World Master</div>
+                  <div className="text-[10px] sm:text-[11px] text-emerald-200/80 truncate">Campeã IBJJF</div>
                 </div>
               </div>
 
-              <div className="col-span-2 sm:col-span-1 flex items-center gap-3 p-3 rounded-2xl bg-white/10 backdrop-blur-md border border-white/15">
+              <div className="col-span-2 sm:col-span-1 flex items-center gap-2.5 sm:gap-3 p-2.5 sm:p-3 rounded-2xl bg-white/10 backdrop-blur-md border border-white/15">
                 <Activity className="w-5 h-5 text-teal-300 flex-shrink-0" />
-                <div className="text-left">
-                  <div className="text-xs font-bold text-white">100% Individual</div>
-                  <div className="text-[11px] text-emerald-200/80">Aparelhos Clínicos</div>
+                <div className="text-left min-w-0">
+                  <div className="text-xs font-bold text-white truncate">100% Individual</div>
+                  <div className="text-[10px] sm:text-[11px] text-emerald-200/80 truncate">Aparelhos Clínicos</div>
                 </div>
               </div>
             </div>
 
             {/* Action Buttons */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 pt-2">
               <button
+                type="button"
                 onClick={onOpenAssessment}
                 id="hero-cta-avaliacao"
-                className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-2xl text-sm sm:text-base font-extrabold uppercase tracking-wider text-emerald-950 bg-gradient-to-r from-emerald-300 via-teal-300 to-emerald-200 hover:from-white hover:to-emerald-100 shadow-xl shadow-emerald-950/40 transition-all transform hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
+                className="inline-flex items-center justify-center gap-3 px-6 sm:px-8 py-3.5 sm:py-4 rounded-2xl text-xs sm:text-base font-extrabold uppercase tracking-wider text-emerald-950 bg-gradient-to-r from-emerald-300 via-teal-300 to-emerald-200 hover:from-white hover:to-emerald-100 shadow-xl shadow-emerald-950/40 transition-all transform hover:-translate-y-0.5 active:translate-y-0 cursor-pointer min-h-[48px]"
               >
                 <span>QUERO MINHA AVALIAÇÃO</span>
-                <ArrowRight className="w-5 h-5 text-emerald-950" />
+                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-950" />
               </button>
 
               <a
@@ -133,9 +134,9 @@ export const Hero: React.FC<HeroProps> = ({ onOpenAssessment }) => {
                 id="hero-cta-whatsapp"
                 aria-label="Conversar com Adriana no WhatsApp"
                 title="Conversar com Adriana no WhatsApp"
-                className="inline-flex items-center justify-center gap-2.5 px-6 py-4 rounded-2xl text-sm sm:text-base font-bold text-white bg-white/10 hover:bg-white/15 border border-white/20 backdrop-blur-md transition-colors"
+                className="inline-flex items-center justify-center gap-2.5 px-5 sm:px-6 py-3.5 sm:py-4 rounded-2xl text-xs sm:text-base font-bold text-white bg-white/10 hover:bg-white/15 border border-white/20 backdrop-blur-md transition-colors min-h-[48px]"
               >
-                <MessageSquare className="w-5 h-5 text-emerald-300" />
+                <MessageSquare className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-300" />
                 <span>Conversar no WhatsApp</span>
               </a>
             </div>

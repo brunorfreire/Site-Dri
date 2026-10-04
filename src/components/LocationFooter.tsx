@@ -198,41 +198,44 @@ Informações de contato:
 
                 <form onSubmit={handleSubmit} className="space-y-3.5">
                   <div>
-                    <label className="block text-xs font-bold uppercase tracking-wider text-emerald-200 mb-1">
+                    <label htmlFor="footer-name" className="block text-xs font-bold uppercase tracking-wider text-emerald-200 mb-1">
                       Seu Nome Completo
                     </label>
                     <input
+                      id="footer-name"
                       type="text"
                       required
                       placeholder="Ex: Amanda Silva"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full px-4 py-3 rounded-2xl bg-emerald-950/80 border border-emerald-700/80 text-white text-sm focus:outline-none focus:ring-2 focus:ring-emerald-400 placeholder:text-emerald-300/40"
+                      className="w-full px-4 py-3.5 rounded-2xl bg-emerald-950/80 border border-emerald-700/80 text-white text-base focus:outline-none focus:ring-2 focus:ring-emerald-400 placeholder:text-emerald-300/40 min-h-[48px]"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-xs font-bold uppercase tracking-wider text-emerald-200 mb-1">
+                    <label htmlFor="footer-phone" className="block text-xs font-bold uppercase tracking-wider text-emerald-200 mb-1">
                       WhatsApp ou Telefone
                     </label>
                     <input
+                      id="footer-phone"
                       type="tel"
                       required
                       placeholder="Ex: (21) 97150-2301"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className="w-full px-4 py-3 rounded-2xl bg-emerald-950/80 border border-emerald-700/80 text-white text-sm focus:outline-none focus:ring-2 focus:ring-emerald-400 placeholder:text-emerald-300/40"
+                      className="w-full px-4 py-3.5 rounded-2xl bg-emerald-950/80 border border-emerald-700/80 text-white text-base focus:outline-none focus:ring-2 focus:ring-emerald-400 placeholder:text-emerald-300/40 min-h-[48px]"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-xs font-bold uppercase tracking-wider text-emerald-200 mb-1">
+                    <label htmlFor="footer-service" className="block text-xs font-bold uppercase tracking-wider text-emerald-200 mb-1">
                       Serviço Desejado
                     </label>
                     <select
+                      id="footer-service"
                       value={formData.service}
                       onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                      className="w-full px-4 py-3 rounded-2xl bg-emerald-950/80 border border-emerald-700/80 text-white text-sm focus:outline-none focus:ring-2 focus:ring-emerald-400"
+                      className="w-full px-4 py-3.5 rounded-2xl bg-emerald-950/80 border border-emerald-700/80 text-white text-base focus:outline-none focus:ring-2 focus:ring-emerald-400 min-h-[48px]"
                     >
                       <option value="fisioterapia-ortopedica">Fisioterapia Traumato-Ortopédica</option>
                       <option value="rpg-postural">RPG - Reeducação Postural Global</option>
@@ -244,15 +247,16 @@ Informações de contato:
                   </div>
 
                   <div>
-                    <label className="block text-xs font-bold uppercase tracking-wider text-emerald-200 mb-1">
+                    <label htmlFor="footer-message" className="block text-xs font-bold uppercase tracking-wider text-emerald-200 mb-1">
                       Descreva brevemente sua queixa ou dor
                     </label>
                     <textarea
+                      id="footer-message"
                       rows={3}
                       placeholder="Ex: Sinto dores na coluna lombar ao sentar ou treinar..."
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      className="w-full px-4 py-3 rounded-2xl bg-emerald-950/80 border border-emerald-700/80 text-white text-sm focus:outline-none focus:ring-2 focus:ring-emerald-400 placeholder:text-emerald-300/40"
+                      className="w-full px-4 py-3 rounded-2xl bg-emerald-950/80 border border-emerald-700/80 text-white text-base focus:outline-none focus:ring-2 focus:ring-emerald-400 placeholder:text-emerald-300/40 min-h-[80px]"
                     />
                   </div>
 
@@ -260,7 +264,7 @@ Informações de contato:
                     type="submit"
                     aria-label="Conversar com Adriana no WhatsApp"
                     title="Conversar com Adriana no WhatsApp"
-                    className="w-full py-4 rounded-2xl bg-emerald-400 hover:bg-emerald-300 text-emerald-950 font-black text-xs sm:text-sm uppercase tracking-wider shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer"
+                    className="w-full py-4 rounded-2xl bg-emerald-400 hover:bg-emerald-300 text-emerald-950 font-black text-xs sm:text-sm uppercase tracking-wider shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer min-h-[50px] active:scale-[0.99]"
                   >
                     <Send className="w-4 h-4" />
                     <span>Enviar Mensagem pelo WhatsApp</span>
